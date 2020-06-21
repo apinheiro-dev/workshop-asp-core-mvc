@@ -14,6 +14,7 @@ namespace VendasWebMVC.Controllers
             List<Departamento> list = new List<Departamento>();
             list.Add(new Departamento { Id = 1, Nome = "Eletrônicos" });
             list.Add(new Departamento { Id = 2, Nome = "Vestuário" });
+            list.Add(new Departamento { Id = 2, Nome = "Ferramentas" });
 
             return View(list);
         }
