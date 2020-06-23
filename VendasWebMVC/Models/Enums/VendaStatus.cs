@@ -1,0 +1,10 @@
+﻿
+namespace VendasWebMVC.Models.Enums
+{
+    public enum VendaStatus
+    {
+        Pendente = 0,
+        Faturado = 1,
+        Cancelado = 2
+    }
+}
