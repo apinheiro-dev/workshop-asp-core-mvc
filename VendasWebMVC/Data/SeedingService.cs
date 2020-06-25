@@ -31,7 +31,7 @@ namespace VendasWebMVC.Data
 
             Vendedor v1 = new Vendedor { Nome = "Marcelo Ronaldo", Email = "mronaldo@gmail.com", DataNascimento = new DateTime(1996, 4, 22), Salario = 1000.0, Departamento = d1 };
             Vendedor v2 = new Vendedor { Nome = "Carlos Magno", Email = "cmagno@gmail.com", DataNascimento = new DateTime(1980, 6, 15), Salario = 3800.0, Departamento = d2 };
-            Vendedor v3 = new Vendedor { Nome = "Marco Antônio", Email = "@gmail.com", DataNascimento = new DateTime(1978, 4, 15), Salario = 4650.0, Departamento = d1 };
+            Vendedor v3 = new Vendedor { Nome = "Marco Antônio", Email = "manto@gmail.com", DataNascimento = new DateTime(1978, 4, 15), Salario = 4650.0, Departamento = d1 };
             Vendedor v4 = new Vendedor { Nome = "Cristina Aguillar", Email = "aguillar@gmail.com", DataNascimento = new DateTime(1986, 10, 3), Salario = 1800.0, Departamento = d3 };
             Vendedor v5 = new Vendedor { Nome = "Cintia Moraes", Email = "cmoraes@gmail.com", DataNascimento = new DateTime(1988, 2, 14), Salario = 5500.0, Departamento = d2 };
             Vendedor v6 = new Vendedor { Nome = "Flavia Carla", Email = "flaviac@gmail.com", DataNascimento = new DateTime(1991, 11, 9), Salario = 1450.0, Departamento = d3 };

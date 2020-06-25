@@ -1,9 +1,54 @@
-﻿
+﻿@model IEnumerable<VendasWebMVC.Models.Vendedor>
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Vendedores";
 }
 
-<h2>Vendedores</h2>
+<h2>@ViewData["Title"]</h2>
 
 <p>Página index de vendedores</p>
 
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="success">
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salario)
+            </td>
+            <td>
+                <a asp-action="Editar" asp-route-id="@item.Id">Editar</a>
+                <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a>
+                <a asp-action="Apagar" asp-route-id="@item.Id">Apagar</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
