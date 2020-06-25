@@ -79,8 +79,7 @@ namespace VendasWebMVC.Data
             _contexto.RegistroVendas.AddRange(
                 rv1, rv2, rv3, rv4, rv5, rv6, rv7, rv8, rv9, rv10,
                 rv11, rv12, rv13, rv14, rv15, rv16, rv17, rv18, rv19, rv20,
-                rv21, rv22, rv23, rv24, rv25, rv26, rv27, rv28, rv29,
-                rv30
+                rv21, rv22, rv23, rv24, rv25, rv26, rv27, rv28, rv29, rv30
             );
 
             _contexto.SaveChanges();
