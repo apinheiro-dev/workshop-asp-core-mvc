@@ -40,5 +40,29 @@ namespace VendasWebMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Apagar(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var obj = _vendedorService.BuscarPorId(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Apagar(int id)
+        {
+            _vendedorService.Remover(id);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
