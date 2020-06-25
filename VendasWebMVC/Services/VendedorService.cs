@@ -19,5 +19,11 @@ namespace VendasWebMVC.Services
         {
             return _contexto.Vendedor.ToList();
         }
+
+        public void Inserir(Vendedor obj)
+        {
+            _contexto.Add(obj);
+            _contexto.SaveChanges();
+        }
     }
 }
