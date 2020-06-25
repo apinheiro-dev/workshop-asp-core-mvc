@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VendasWebMVC.Models;
+using Microsoft.EntityFrameworkCore; // Instrução Include, para Join das Tabelas
 
 namespace VendasWebMVC.Services
 {
@@ -28,7 +29,9 @@ namespace VendasWebMVC.Services
 
         public Vendedor BuscarPorId(int id)
         {
-            return _contexto.Vendedor.FirstOrDefault(obj => obj.Id == id);
+            // Join
+            return _contexto.Vendedor.Include(obj => obj.Departamento).FirstOrDefault(obj => obj.Id == id);
+            //Eager Loading - Carregar outros objetos com o objeto principal
         }
 
         public void Remover(int id)
