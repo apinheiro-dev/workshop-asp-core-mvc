@@ -15,14 +15,13 @@ namespace VendasWebMVC.Services
             _contexto = contexto;
         }
 
-        public List<Vendedor> FindAll()
+        public List<Vendedor> BuscarTodos()
         {
             return _contexto.Vendedor.ToList();
         }
 
         public void Inserir(Vendedor obj)
         {
-            obj.Departamento = _contexto.Departamento.First();
             _contexto.Add(obj);
             _contexto.SaveChanges();
         }
