@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VendasWebMVC.Models;
 using Microsoft.EntityFrameworkCore; // Instrução Include, para Join das Tabelas
+using VendasWebMVC.Services.Exceptions;
 
 namespace VendasWebMVC.Services
 {
@@ -39,6 +40,23 @@ namespace VendasWebMVC.Services
             var obj = _contexto.Vendedor.Find(id);
             _contexto.Vendedor.Remove(obj);
             _contexto.SaveChanges();
+        }
+
+        public void Atualizar(Vendedor obj)
+        {
+            if (!_contexto.Vendedor.Any(x => x.Id == obj.Id))
+            {
+                throw new NotFoundException("Id não encontrado!");
+            }
+            try
+            {
+                _contexto.Update(obj);
+                _contexto.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
         }
     }
 }
