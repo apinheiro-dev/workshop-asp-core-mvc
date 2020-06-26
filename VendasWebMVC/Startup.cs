@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Globalization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using VendasWebMVC.Models;
 using VendasWebMVC.Data;
 using VendasWebMVC.Services;
+
+
 
 namespace VendasWebMVC
 {
@@ -53,6 +57,17 @@ namespace VendasWebMVC
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingService seedingService)
         {
+            // Local(País) da Aplicação
+            var ptBR = new CultureInfo("pt-BR");
+            var localizacaoOpcoes = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(ptBR),
+                SupportedCultures = new List<CultureInfo> {ptBR},
+                SupportedUICultures = new List<CultureInfo> {ptBR}
+                
+            };
+            app.UseRequestLocalization(localizacaoOpcoes);
+
             // No ambiente de desenvolvimento
             if (env.IsDevelopment())
             {
