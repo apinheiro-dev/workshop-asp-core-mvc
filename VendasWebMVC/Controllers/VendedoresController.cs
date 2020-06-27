@@ -38,6 +38,13 @@ namespace VendasWebMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Criar(Vendedor vendedor)
         {
+            // Validação no lado do Servidor caso esteja desabilitado no Cliente (JavaScript)
+            if (!ModelState.IsValid)
+            {
+                var departamentos = _departamentoService.BuscarTodos();
+                var viewModel = new VendedorFormViewModel { Vendedor = vendedor, Departamentos = departamentos };
+                return View(vendedor);
+            }
             _vendedorService.Inserir(vendedor);
             return RedirectToAction(nameof(Index));
         }
@@ -105,6 +112,13 @@ namespace VendasWebMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Editar(int id, Vendedor vendedor)
         {
+            // Validação no lado do Servidor caso esteja desabilitado no Cliente (JavaScript)
+            if (!ModelState.IsValid)
+            {
+                var departamentos = _departamentoService.BuscarTodos();
+                var viewModel = new VendedorFormViewModel { Vendedor = vendedor, Departamentos = departamentos };
+                return View(vendedor);
+            }
             if (id != vendedor.Id)
             {
                 return RedirectToAction(nameof(Erro), new { mensagem = "Id não correspondente!" });
