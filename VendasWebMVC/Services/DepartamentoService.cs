@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using VendasWebMVC.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace VendasWebMVC.Services
 {
@@ -13,9 +15,9 @@ namespace VendasWebMVC.Services
             _contexto = contexto;
         }
 
-        public List<Departamento> BuscarTodos()
+        public async Task <List<Departamento>> BuscarTodosAsync()
         {
-            return _contexto.Departamento.OrderBy(x => x.Nome).ToList();
+            return await _contexto.Departamento.OrderBy(x => x.Nome).ToListAsync();
         }
 
     }

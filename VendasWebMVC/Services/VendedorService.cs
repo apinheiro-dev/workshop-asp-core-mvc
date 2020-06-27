@@ -17,41 +17,43 @@ namespace VendasWebMVC.Services
             _contexto = contexto;
         }
 
-        public List<Vendedor> BuscarTodos()
+        public async Task<List<Vendedor>> BuscarTodosAsync()
         {
-            return _contexto.Vendedor.ToList();
+            return await _contexto.Vendedor.ToListAsync();
         }
 
-        public void Inserir(Vendedor obj)
+        public async Task InserirAsync(Vendedor obj)
         {
             _contexto.Add(obj);
-            _contexto.SaveChanges();
+            await _contexto.SaveChangesAsync();
         }
 
-        public Vendedor BuscarPorId(int id)
+        public async Task<Vendedor> BuscarPorIdAsync(int id)
         {
             // Join
-            return _contexto.Vendedor.Include(obj => obj.Departamento).FirstOrDefault(obj => obj.Id == id);
+            return await _contexto.Vendedor.Include(obj => obj.Departamento).FirstOrDefaultAsync(obj => obj.Id == id);
             //Eager Loading - Carregar outros objetos com o objeto principal
         }
 
-        public void Remover(int id)
+        public async Task RemoverAsync(int id)
         {
-            var obj = _contexto.Vendedor.Find(id);
+            var obj = await _contexto.Vendedor.FindAsync(id);
             _contexto.Vendedor.Remove(obj);
-            _contexto.SaveChanges();
+            await _contexto.SaveChangesAsync();
         }
 
-        public void Atualizar(Vendedor obj)
+        public async Task AtualizarAsync(Vendedor obj)
         {
-            if (!_contexto.Vendedor.Any(x => x.Id == obj.Id))
+            bool temAlgum = await _contexto.Vendedor.AnyAsync(x => x.Id == obj.Id);
+
+            if (!temAlgum)
             {
                 throw new NotFoundException("Id não encontrado!");
             }
             try
             {
                 _contexto.Update(obj);
-                _contexto.SaveChanges();
+                await _contexto.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException e)
             {
