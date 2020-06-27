@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace VendasWebMVC.Models
 {
@@ -25,6 +26,7 @@ namespace VendasWebMVC.Models
             Vendedores.Add(vendedor);
         }
 
+        [DataType(DataType.Currency)]
         public double TotalVendas(DateTime inicial, DateTime final)
         {
             return Vendedores.Sum(vendedor => vendedor.TotalVendas(inicial, final));

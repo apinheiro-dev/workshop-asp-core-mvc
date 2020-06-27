@@ -28,7 +28,6 @@ namespace VendasWebMVC.Models
         [Range(100.0, 50000.0, ErrorMessage = "{0} deve estar entre {1} e {2}")]
         [Display(Name = "Salário Base")]
         [DataType(DataType.Currency)]
-        [DisplayFormat(DataFormatString = "{0:F2}")]
         public double Salario { get; set; }
         public Departamento Departamento { get; set; }
 
